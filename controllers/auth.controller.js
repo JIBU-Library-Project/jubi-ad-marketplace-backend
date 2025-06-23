@@ -14,7 +14,6 @@ const signUp = async (req, res, next) => {
       companyName,
       phone,
       location,
-      number,
     } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -30,7 +29,7 @@ const signUp = async (req, res, next) => {
       password: hashedPassword,
       ...(role === "user"
         ? { firstName, lastName, userName }
-        : { companyName, phone, location, number }),
+        : { companyName, phone, location }),
     });
 
     await newUser.save();
