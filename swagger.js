@@ -5,8 +5,8 @@ const doc = {
     description:
       "An API that allows users access advertisements and allows vendors make neccessary modifications to their adverts.",
   },
-  host: "localhost:5000",
-  schemes: ["http"],
+  host: "https://jubi-ad-marketplace-backend.onrender.com",
+  schemes: ["https"],
 };
 
 const outputFile = "./swagger-output.json";

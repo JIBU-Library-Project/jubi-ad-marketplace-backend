@@ -5,10 +5,10 @@
     "description": "An API that allows users access advertisements and allows vendors make neccessary modifications to their adverts.",
     "version": "1.0.0"
   },
-  "host": "localhost:5000",
+  "host": "https://jubi-ad-marketplace-backend.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/signup": {
@@ -46,9 +46,6 @@
                   "example": "any"
                 },
                 "location": {
-                  "example": "any"
-                },
-                "number": {
                   "example": "any"
                 }
               }
