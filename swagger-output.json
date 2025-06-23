@@ -105,6 +105,181 @@
           }
         }
       }
+    },
+    "/api/adverts": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/adverts/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/adverts/post": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "brand": {
+                  "example": "any"
+                },
+                "model": {
+                  "example": "any"
+                },
+                "storage": {
+                  "example": "any"
+                },
+                "condition": {
+                  "example": "any"
+                },
+                "warranty": {
+                  "example": "any"
+                },
+                "size": {
+                  "example": "any"
+                },
+                "material": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "color": {
+                  "example": "any"
+                },
+                "rooms": {
+                  "example": "any"
+                },
+                "bathrooms": {
+                  "example": "any"
+                },
+                "furnished": {
+                  "example": "any"
+                },
+                "paymentTerm": {
+                  "example": "any"
+                },
+                "hasParking": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                },
+                "quantity": {
+                  "example": "any"
+                },
+                "expiry": {
+                  "example": "any"
+                },
+                "origin": {
+                  "example": "any"
+                },
+                "packaged": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
     }
   }
 }
