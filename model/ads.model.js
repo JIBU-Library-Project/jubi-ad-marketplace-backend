@@ -9,6 +9,7 @@ const adSchema = new mongoose.Schema({
 
   // Embedded vendor details
   vendorDetails: {
+    id: { type: String, required: true },
     companyName: { type: String, required: true },
     phone: { type: String, required: true },
     location: { type: String, required: true },
@@ -32,22 +33,46 @@ adSchema.pre("validate", function (next) {
   const meta = this.metadata;
   switch (this.category) {
     case "electronics":
-      if (!meta.brand || !meta.model || !meta.storage) {
+      if (
+        !meta.brand ||
+        !meta.model ||
+        !meta.storage ||
+        !meta.condition ||
+        !meta.warranty
+      ) {
         return next(new Error("Missing fields in electronics metadata"));
       }
       break;
     case "fashion":
-      if (!meta.brand || !meta.size || !meta.material) {
+      if (
+        !meta.brand ||
+        !meta.size ||
+        !meta.material ||
+        !meta.gender ||
+        !meta.color
+      ) {
         return next(new Error("Missing fields in fashion metadata"));
       }
       break;
     case "real-estate":
-      if (meta.rooms == null || meta.bathrooms == null) {
+      if (
+        !meta.rooms ||
+        !meta.bathrooms ||
+        !meta.furnished ||
+        !meta.paymentTerm ||
+        !meta.hasParking
+      ) {
         return next(new Error("Missing fields in real estate metadata"));
       }
       break;
     case "food":
-      if (!meta.type || !meta.quantity || !meta.expiry) {
+      if (
+        !meta.type ||
+        !meta.quantity ||
+        !meta.expiry ||
+        !meta.origin ||
+        !packaged
+      ) {
         return next(new Error("Missing fields in food metadata"));
       }
       break;
