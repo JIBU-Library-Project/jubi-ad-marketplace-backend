@@ -32,4 +32,5 @@ router.patch(
   authorize(["vendor"]),
   updateAd
 );
+
 module.exports = router;

@@ -7,19 +7,21 @@ const getAllAds = async (req, res, next) => {
 
   try {
     const filter = {};
-    if (title) filter.title = title;
-    if (description) filter.description = description;
+
+    if (title) filter.title = { $regex: title, $options: "i" };
+    if (description)
+      filter.description = { $regex: description, $options: "i" };
     if (price) filter.price = price;
-    if (location) filter.location = location;
+    if (location) filter.location = { $regex: location, $options: "i" };
     if (category) filter.category = category;
 
-    const adverts = await Ads.find(filter);
+    // If no query params, return all ads
+    const adverts =
+      Object.keys(filter).length === 0
+        ? await Ads.find()
+        : await Ads.find(filter);
 
-    if (adverts.length === 0) {
-      return res.status(404).json({ message: "Oops! Nothing here yet" });
-    }
-
-    return res.success("ads", adverts);
+    return res.success("ads", adverts, 200);
   } catch (error) {
     next(error);
   }
@@ -45,17 +47,6 @@ const getAdsById = async (req, res, next) => {
     next(error);
   }
 };
-
-// getting ads by search
-// const getAdsBySearch = async (req, res, next) => {
-//   const {title,description,price,location,category,} = req.query;
-
-//   try {
-//     const ad = await
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 
 // posting an ad
 const postAds = async (req, res, next) => {
