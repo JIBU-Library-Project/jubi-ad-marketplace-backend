@@ -4,13 +4,14 @@ const {
   getAdsById,
   postAds,
   deleteAd,
-  updateAd
+  updateAd,
+  getAdsByVendorId,
 } = require("../controllers/ads.controller");
 const { authenticate, authorize } = require("../middlewares/auth.middleware");
 const upload = require("../middlewares/multer.middleware");
 const router = Router();
 
-router.get("/api/adverts", authenticate, getAllAds);
+router.get("/api/adverts", getAllAds);
 router.get("/api/adverts/:id", authenticate, getAdsById);
 router.post(
   "/api/adverts/post",
@@ -26,11 +27,13 @@ router.delete(
   deleteAd
 );
 
-router.patch(
-  "/api/adverts/:id",
+router.patch("/api/adverts/:id", authenticate, authorize(["vendor"]), updateAd);
+
+router.get(
+  "/api/vendor/adverts",
   authenticate,
   authorize(["vendor"]),
-  updateAd
+  getAdsByVendorId
 );
 
 module.exports = router;
