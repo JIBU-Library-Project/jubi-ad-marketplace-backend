@@ -17,4 +17,5 @@ router.post(
   upload.array("files", 5),
   postAds
 );
+
 module.exports = router;
