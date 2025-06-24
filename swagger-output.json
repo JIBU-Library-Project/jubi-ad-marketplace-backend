@@ -86,35 +86,10 @@
         }
       }
     },
-    "/api/protected": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
     "/api/adverts": {
       "get": {
         "description": "",
         "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
           {
             "name": "title",
             "in": "query",
@@ -142,11 +117,8 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
+          "default": {
+            "description": ""
           }
         }
       }
@@ -173,6 +145,144 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "brand": {
+                  "example": "any"
+                },
+                "model": {
+                  "example": "any"
+                },
+                "storage": {
+                  "example": "any"
+                },
+                "condition": {
+                  "example": "any"
+                },
+                "warranty": {
+                  "example": "any"
+                },
+                "size": {
+                  "example": "any"
+                },
+                "material": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "color": {
+                  "example": "any"
+                },
+                "rooms": {
+                  "example": "any"
+                },
+                "bathrooms": {
+                  "example": "any"
+                },
+                "furnished": {
+                  "example": "any"
+                },
+                "paymentTerm": {
+                  "example": "any"
+                },
+                "hasParking": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                },
+                "quantity": {
+                  "example": "any"
+                },
+                "expiry": {
+                  "example": "any"
+                },
+                "origin": {
+                  "example": "any"
+                },
+                "packaged": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -277,6 +387,32 @@
           },
           "403": {
             "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/vendor/adverts": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }

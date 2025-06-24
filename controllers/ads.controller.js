@@ -218,10 +218,34 @@ const updateAd = async (req, res, next) => {
   }
 };
 
+// getting Ads by single vendor
+const getAdsByVendorId = async (req, res, next) => {
+  const vendorId = req.user._id;
+  const validVendorId = mongoose.Types.ObjectId.isValid(vendorId);
+  if (!validVendorId) {
+    return res.status(400).json({ message: "Invalid ID format." });
+  }
+  console.log(validVendorId);
+  try {
+    const matchAd = await Ads.findOne({ "vendorDetails.id": vendorId });
+    console.log(matchAd);
+
+    if (!matchAd) {
+      return res.status(404).json({
+        message: "No ad found",
+      });
+    }
+    return res.success("vendorAds", matchAd);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllAds,
   getAdsById,
   postAds,
   deleteAd,
   updateAd,
+  getAdsByVendorId,
 };
