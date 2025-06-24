@@ -127,8 +127,110 @@ const postAds = async (req, res, next) => {
   }
 };
 
+// deleting an ad
+const deleteAd = async (req, res, next) => {
+  const id = req.params.id;
+  const isIdValid = mongoose.Types.ObjectId.isValid(id);
+  if (!isIdValid) {
+    return res.status(400).json({ message: "Invalid ID format." });
+  }
+  try {
+    const deletedAd = await Ads.findByIdAndDelete(id);
+    if (!deleteAd) {
+      return res.status(404).json({
+        message: `Ad with ID: ${id} not found`,
+      });
+    }
+
+    return res.success("AdvertDeleted", deletedAd);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// updating an ad
+const updateAd = async (req, res, next) => {
+  const id = req.params.id;
+  const {
+    title,
+    description,
+    price,
+    location,
+    brand,
+    model,
+    storage,
+    condition,
+    warranty,
+    size,
+    material,
+    gender,
+    color,
+    rooms,
+    bathrooms,
+    furnished,
+    paymentTerm,
+    hasParking,
+    type,
+    quantity,
+    expiry,
+    origin,
+    packaged,
+  } = req.body;
+  const isIdValid = mongoose.Types.ObjectId.isValid(id);
+
+  if (!isIdValid) {
+    return res.status(400).json({ message: "Invalid ID format." });
+  }
+  try {
+    const matchAd = await Ads.findOne({ _id: id });
+
+    if (!matchAd) {
+      return res.status(404).json({
+        message: `Ad with ID: ${id} not found`,
+      });
+    }
+
+    const updatedAd = {
+      id: matchAd._id,
+      title: !title ? matchAd.title : title,
+      description: !description ? matchAd.description : description,
+      price: !price ? matchAd.price : price,
+      location: !location ? matchAd.location : location,
+      metadata: {
+        brand: !brand ? matchAd.brand : brand,
+        model: !model ? matchAd.model : model,
+        storage: !storage ? matchAd.storage : storage,
+        condition: !condition ? matchAd.condition : condition,
+        warranty: !warranty ? matchAd.warranty : warranty,
+        size: !size ? matchAd.size : size,
+        material: !material ? matchAd.material : material,
+        gender: !gender ? matchAd.gender : gender,
+        color: !color ? matchAd.color : color,
+        rooms: !rooms ? matchAd.rooms : rooms,
+        bathrooms: !bathrooms ? matchAd.bathrooms : bathrooms,
+        furnished: !furnished ? matchAd.furnished : furnished,
+        paymentTerm: !paymentTerm ? matchAd.paymentTerm : paymentTerm,
+        hasParking: !hasParking ? matchAd.hasParking : hasParking,
+        type: !type ? matchAd.type : type,
+        quantity: !quantity ? matchAd.quantity : quantity,
+        expiry: !expiry ? matchAd.expiry : expiry,
+        origin: !origin ? matchAd.origin : origin,
+        packaged: !packaged ? matchAd.packaged : packaged,
+      },
+    };
+
+    const newAds = await Ads.updateOne({ _id: matchAd._id }, updatedAd);
+
+    return res.success("updatedAd", newAds);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllAds,
   getAdsById,
   postAds,
+  deleteAd,
+  updateAd,
 };

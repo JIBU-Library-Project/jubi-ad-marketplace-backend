@@ -5,7 +5,7 @@ const adSchema = new mongoose.Schema({
   description: String,
   price: Number,
   location: String,
-  images: [String],
+  images: [mongoose.Schema.Types.Mixed],
 
   // Embedded vendor details
   vendorDetails: {
@@ -26,6 +26,11 @@ const adSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
+});
+
+const imageModel = new mongoose.Schema({
+  id: String,
+  imageUrl: String,
 });
 
 // Metadata validation middleware

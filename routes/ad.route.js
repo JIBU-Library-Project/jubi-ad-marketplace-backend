@@ -3,6 +3,8 @@ const {
   getAllAds,
   getAdsById,
   postAds,
+  deleteAd,
+  updateAd
 } = require("../controllers/ads.controller");
 const { authenticate, authorize } = require("../middlewares/auth.middleware");
 const upload = require("../middlewares/multer.middleware");
@@ -16,5 +18,18 @@ router.post(
   authorize(["vendor"]),
   upload.array("files", 5),
   postAds
+);
+router.delete(
+  "/api/adverts/:id",
+  authenticate,
+  authorize(["vendor"]),
+  deleteAd
+);
+
+router.patch(
+  "/api/adverts/:id",
+  authenticate,
+  authorize(["vendor"]),
+  updateAd
 );
 module.exports = router;
