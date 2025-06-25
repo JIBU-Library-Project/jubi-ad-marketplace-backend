@@ -227,7 +227,7 @@ const getAdsByVendorId = async (req, res, next) => {
   }
   console.log(validVendorId);
   try {
-    const matchAd = await Ads.findOne({ "vendorDetails.id": vendorId });
+    const matchAd = await Ads.find({ "vendorDetails.id": vendorId });
     console.log(matchAd);
 
     if (!matchAd) {
