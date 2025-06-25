@@ -76,7 +76,7 @@ adSchema.pre("validate", function (next) {
         !meta.quantity ||
         !meta.expiry ||
         !meta.origin ||
-        !packaged
+        !meta.packaged
       ) {
         return next(new Error("Missing fields in food metadata"));
       }

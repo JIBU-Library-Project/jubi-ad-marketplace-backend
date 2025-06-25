@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const User = require("../model/user.model");
 const { signToken } = require("../utils/jwt.util");
+const sendEmail = require("../utils/sendEmail.util");
 
 const signUp = async (req, res, next) => {
   try {
@@ -33,6 +34,8 @@ const signUp = async (req, res, next) => {
     });
 
     await newUser.save();
+    console.log(email, firstName, companyName, role)
+    await sendEmail(email, firstName ?? companyName, role);
     return res.success("user", newUser, 201);
   } catch (error) {
     next(error);

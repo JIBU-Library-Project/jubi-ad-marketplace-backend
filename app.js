@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth.route");
 const userRoutes = require("./routes/ad.route");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger-output.json");
+const sendEmail = require("./utils/sendEmail.util");
 
 const app = express();
 dotenv.config();
@@ -23,6 +24,15 @@ app.use(responseHandler);
 app.use("/", authRoutes);
 
 app.use("/", userRoutes);
+
+// app.post("/test-email", async(req,res)=>{
+//     const {email, name, role} = req.body;
+//     await sendEmail(email, name, role);
+//     res.json({
+//         message: "Sent successfully"
+//     });
+
+// })
 
 app.use(errorHandler);
 
