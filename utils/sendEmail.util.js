@@ -26,7 +26,7 @@ const sendEmail = async (email, name, role) => {
       <li>Boost your brand's visibility with ease</li>
     </ul>
 
-    <a href="https://jubimarket.com/login" style="
+    <a href="https://jubiadverts.netlify.app/" style="
       display: inline-block;
       background-color: rgb(44, 224, 74);
       color: white;
@@ -55,7 +55,7 @@ const sendEmail = async (email, name, role) => {
       <li>Connect with trusted vendors and sellers near you</li>
     </ul>
 
-    <a href="https://jubimarket.com/login" style="
+    <a href="https://jubiadverts.netlify.app/" style="
       display: inline-block;
       background-color:rgb(44, 224, 74);
       color: white;
